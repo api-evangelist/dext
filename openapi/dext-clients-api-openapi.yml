@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Dext Data Health & Insights Clients API
+  version: '1.0'
+  description: Read-only REST API for accounting/bookkeeping practices to extract client data-health metrics and activity statistics from Dext. Authenticate with a bearer token created in Practice settings > Data Health > API tokens. Rate limited to 60 requests per minute.
+  contact:
+    name: Dext Support
+    url: https://help.dext.com/
+servers:
+- url: https://api.precision.dext.com
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Clients
+  description: Practice client data-health metrics and activity statistics
+paths:
+  /clients:
+    get:
+      tags:
+      - Clients
+      operationId: listClients
+      summary: List clients
+      description: Returns a summarised list of all clients the token has access to.
+      responses:
+        '200':
+          description: A summarised list of clients.
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: Request ceiling per minute (60).
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Requests remaining in the current window.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientSummary'
+        '401':
+          description: Missing or invalid bearer token.
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /clients/{clientId}:
+    get:
+      tags:
+      - Clients
+      operationId: getClient
+      summary: Get client detail
+      description: Returns detailed information for a single client, including data-health metrics, VAT details, and bank reconciliation data.
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Detailed client record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientDetail'
+        '401':
+          description: Missing or invalid bearer token.
+        '404':
+          description: Client not found or not accessible to this token.
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /clients/{clientId}/activity-stats:
+    get:
+      tags:
+      - Clients
+      operationId: getClientActivityStats
+      summary: Get client activity statistics
+      description: Returns rolling annual, monthly-average, and quarterly-average activity statistics for a single client.
+      parameters:
+      - name: clientId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Rolling activity statistics for the client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityStats'
+        '401':
+          description: Missing or invalid bearer token.
+        '404':
+          description: Client not found or not accessible to this token.
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  schemas:
+    ActivityStats:
+      type: object
+      description: Rolling annual, monthly-average, and quarterly-average activity statistics. Field names are not enumerated in the public documentation.
+    ClientDetail:
+      type: object
+      description: Detailed client record including data-health metrics, VAT details, and bank reconciliation data. Field names are not enumerated in the public documentation.
+    ClientSummary:
+      type: object
+      description: Summarised client record as returned by the list endpoint. Field names are not enumerated in the public documentation.
+  responses:
+    RateLimited:
+      description: Rate limit exceeded (more than 60 requests per minute).
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'API token created in Practice settings > Data Health > API tokens, sent as `Authorization: Bearer <token>`. The token value is shown once on creation and cannot be retrieved afterwards.'
