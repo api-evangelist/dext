@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: https://help.dext.com/en/articles/272702-data-health-insights-api
+authentication:
+  style: bearer-token
+  header: Authorization
+  format: 'Bearer <token>'
+  ref: authentication/dext-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    The public Data Health & Insights API is read-only (GET only), so no
+    idempotency-key contract is documented or required.
+pagination:
+  documented: false
+  note: >-
+    The public documentation does not describe a pagination mechanism for the
+    list-clients endpoint.
+versioning:
+  documented: false
+  note: No explicit API version segment or version header is documented.
+rate_limiting:
+  limit: 60/min
+  headers: [X-RateLimit-Limit, X-RateLimit-Remaining]
+  exceeded_status: 429
+  ref: rate-limits/dext-rate-limits.yml
+error_handling:
+  ref: errors/dext-problem-types.yml
+  note: Standard HTTP status semantics (401 auth, 404 not found, 429 rate limit).
+transport:
+  base_url: https://api.precision.dext.com
+  scheme: https
+  formats: [application/json]

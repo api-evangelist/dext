@@ -1,0 +1,14 @@
+{
+  "provider": "dext",
+  "sources": [
+    "dext-clients-api-openapi.yml"
+  ],
+  "outputs": [
+    "dext-clients-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/dext-data-health-openapi.yml
+note: >-
+  Entity graph derived from the documented Data Health & Insights API
+  operations. Field-level schemas are not enumerated in Dext's public docs, so
+  only entities and their documented relationships are captured.
+entities:
+- name: Client
+  description: >-
+    An accounting/bookkeeping practice client, with data-health metrics, VAT
+    details, and bank reconciliation data.
+  operations:
+  - openapi/dext-data-health-openapi.yml#listClients
+  - openapi/dext-data-health-openapi.yml#getClient
+  identifier: clientId
+- name: ActivityStats
+  description: >-
+    Rolling annual, monthly-average, and quarterly-average activity statistics
+    for a client.
+  operations:
+  - openapi/dext-data-health-openapi.yml#getClientActivityStats
+relationships:
+- from: Client
+  to: ActivityStats
+  type: has_one
+  via: clientId
+  note: /clients/{clientId}/activity-stats is nested under a Client.

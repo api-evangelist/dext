@@ -1,7 +1,29 @@
 aid: dext
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dext.png
 name: Dext
-description: Dext is a company surfaced as a portfolio company of insight-partners and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Dext is bookkeeping automation software for businesses, accountants and
+  bookkeepers (formerly Receipt Bank / Dext Precision / Dext Commerce). It
+  captures receipts, invoices and bank statements, extracts and validates the
+  data with high accuracy, and publishes it into accounting software such as
+  Xero, QuickBooks, Sage, Zoho and MYOB. Dext serves over 700,000 customers
+  worldwide across the UK, US, Canada, Australia, France and South Africa. For
+  accounting practices, Dext exposes a read-only Data Health & Insights REST
+  API that returns client data-health metrics and rolling activity statistics,
+  authenticated with practice-scoped bearer tokens and rate limited to 60
+  requests per minute.
 url: https://raw.githubusercontent.com/api-evangelist/dext/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +33,93 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Accounting
+- Bookkeeping
+- Receipts
+- Expense Management
+- Financial Automation
+- Data Health
+- OCR
+apis:
+- aid: dext:dext-clients-api
+  name: Dext Clients API
+  description: Practice client data-health metrics and activity statistics
+  humanURL: https://help.dext.com/en/articles/272702-data-health-insights-api
+  baseURL: https://api.precision.dext.com
+  tags:
+  - Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/dext-clients-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/dext-trust-center.yml
 - type: Website
-  url: https://www.receipt-bank.com/
+  url: https://dext.com/
+- type: Documentation
+  url: https://help.dext.com/en/articles/272702-data-health-insights-api
+- type: APIReference
+  url: https://help.dext.com/en/articles/272702-data-health-insights-api
+- type: GettingStarted
+  url: https://help.dext.com/en/articles/272702-data-health-insights-api
+- type: HelpCenter
+  url: https://help.dext.com/
+- type: Support
+  url: https://help.dext.com/
+- type: Blog
+  url: https://dext.com/en/blog
+- type: Pricing
+  url: https://dext.com/en/business/pricing
+- type: TermsOfService
+  url: https://dext.com/us/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://dext.com/us/privacy-policy
+- type: SignUp
+  url: https://app.dext.com/
+- type: GitHubOrganization
+  url: https://github.com/dext
+- type: StatusPage
+  url: https://status.dext.com/
+- type: Security
+  url: https://dext.com/us/security
+- type: Compliance
+  url: https://dext.com/us/security
+- type: LLMsTxt
+  url: llms/dext-llms.txt
+- type: Authentication
+  url: authentication/dext-authentication.yml
+- type: RateLimits
+  url: rate-limits/dext-rate-limits.yml
+- type: Conventions
+  url: conventions/dext-conventions.yml
+- type: Lifecycle
+  url: lifecycle/dext-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/dext-problem-types.yml
+- type: Conformance
+  url: conformance/dext-conformance.yml
+- type: DataModel
+  url: data-model/dext-data-model.yml
+- type: MCPServer
+  url: mcp/dext-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: OpenAPI
+  url: openapi/dext-data-health-openapi.yml
+- type: DomainSecurity
+  url: security/dext-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/dext-vulnerability-disclosure.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

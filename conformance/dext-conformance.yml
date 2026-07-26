@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/dext-data-health-openapi.yml
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses static practice-scoped bearer tokens, not OAuth 2.0 flows.
+- id: oidc
+  conforms: false
+- id: http-bearer-auth
+  conforms: true
+  evidence: securityScheme type http/bearer per openapi/dext-data-health-openapi.yml
+- id: rest-json
+  conforms: true
+  evidence: JSON over HTTPS REST resource endpoints
+- id: rate-limit-headers
+  conforms: true
+  evidence: X-RateLimit-Limit / X-RateLimit-Remaining headers documented on 429
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json error registry published
+- id: fhir-r4
+  conforms: false
+- id: fapi
+  conforms: false
+- id: scim
+  conforms: false
+compliance_programs:
+- ISO/IEC 27001:2022
+- PCI DSS (via AWS infrastructure)
+- SOC 1 / SOC 2 (via AWS infrastructure)
+- GDPR
+compliance_source: https://dext.com/us/security

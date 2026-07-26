@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/dext-data-health-openapi.yml
+format: http-status
+docs: https://help.dext.com/en/articles/272702-data-health-insights-api
+note: >-
+  Dext's public Data Health & Insights API documents standard HTTP status
+  semantics; it does not publish an RFC 9457 application/problem+json error
+  registry. Only the 429 rate-limit behaviour is explicitly documented; 401 and
+  404 are derived from the documented auth and path-parameter operations.
+problems:
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid bearer token.
+  remediation: >-
+    Supply a valid `Authorization: Bearer <token>` header using a token created
+    in Practice settings > Data Health > API tokens.
+  source_operations:
+  - openapi/dext-data-health-openapi.yml#listClients
+  - openapi/dext-data-health-openapi.yml#getClient
+  - openapi/dext-data-health-openapi.yml#getClientActivityStats
+- status: 404
+  title: Not Found
+  meaning: The requested client does not exist or is not accessible to this token.
+  remediation: Verify the clientId and that the token's practice has access to it.
+  source_operations:
+  - openapi/dext-data-health-openapi.yml#getClient
+  - openapi/dext-data-health-openapi.yml#getClientActivityStats
+- status: 429
+  title: Too Many Requests
+  meaning: More than 60 requests were made within one minute.
+  remediation: >-
+    Back off until the window resets; read X-RateLimit-Remaining to pace
+    requests within the 60/min ceiling.
+  documented: true
+  source_operations:
+  - openapi/dext-data-health-openapi.yml#listClients
+  - openapi/dext-data-health-openapi.yml#getClient
+  - openapi/dext-data-health-openapi.yml#getClientActivityStats

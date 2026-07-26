@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+source: https://help.dext.com/en/articles/272702-data-health-insights-api
+scheme: fixed-window
+rate_limits:
+- api: Dext Data Health & Insights API
+  limit_count: 60
+  window: 1m
+  scope: token
+  exceeded_status: 429
+  exceeded_body: Too Many Requests
+headers:
+- name: X-RateLimit-Limit
+  description: The request ceiling for the window (60).
+- name: X-RateLimit-Remaining
+  description: Requests remaining in the current window.
+notes: >-
+  60 requests per minute per API token. Exceeding the limit returns HTTP 429
+  Too Many Requests with X-RateLimit-Limit and X-RateLimit-Remaining response
+  headers.

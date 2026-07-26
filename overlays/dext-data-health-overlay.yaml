@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Dext Data Health & Insights API
+  version: 1.0.0
+extends: openapi/dext-data-health-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-apievangelist-source: https://help.dext.com/en/articles/272702-data-health-insights-api
+    x-api-provider: Dext
+- target: $.info
+  update:
+    x-rate-limit:
+      requests: 60
+      window: 1m
+      ref: rate-limits/dext-rate-limits.yml
+- target: $.components.securitySchemes.bearerAuth
+  update:
+    x-token-management: Practice settings > Data Health > API tokens

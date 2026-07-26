@@ -1,0 +1,15 @@
+generated: '2026-07-18'
+method: searched
+source: https://help.dext.com/en/articles/272702-data-health-insights-api
+versioning:
+  scheme: unversioned-path
+  note: No explicit version segment is documented for the Data Health & Insights API.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No public deprecation policy or RFC 8594 Sunset/Deprecation header support documented.
+sla:
+  url: null
+status_page: https://status.dext.com/
+product_updates: https://dext.com/en/blog
+deprecated_operations: []

@@ -1,0 +1,7 @@
+generated: '2026-07-18'
+method: generated
+skills:
+- file: dext-client-data-health.md
+  name: Pull client data-health and activity stats from Dext
+  api: openapi/dext-data-health-openapi.yml
+  operations: [listClients, getClient, getClientActivityStats]
