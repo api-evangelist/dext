@@ -60,6 +60,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/dext-data-health-overlay.yaml
 - type: TrustCenter
   url: security/dext-trust-center.yml
 - type: Website
@@ -113,7 +115,7 @@ common:
 - type: AgentSkill
   url: skills/_index.yml
 - type: OpenAPI
-  url: openapi/dext-data-health-openapi.yml
+  url: openapi/_original/dext-data-health-openapi.yml
 - type: DomainSecurity
   url: security/dext-domain-security.yml
 - type: VulnerabilityDisclosure
