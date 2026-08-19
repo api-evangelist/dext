@@ -2,10 +2,9 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/dext-data-health-openapi.yml
-note: >-
-  No official Dext-hosted MCP server was found. This is a candidate tool list
-  derived one-to-one from the documented Data Health & Insights API operations,
-  to seed a future MCP server. Auth would be the practice-scoped bearer token.
+note: No official Dext-hosted MCP server was found. This is a candidate tool list derived one-to-one from
+  the documented Data Health & Insights API operations, to seed a future MCP server. Auth would be the
+  practice-scoped bearer token.
 server:
   name: dext
   transport: http
@@ -20,3 +19,9 @@ tools:
 - name: get_client_activity_stats
   description: Get rolling annual/monthly/quarterly activity stats for a client.
   source_operation: openapi/dext-data-health-openapi.yml#getClientActivityStats
+deployment:
+  mode: none
+  verified: derived
+  tools: 3
+  checked: '2026-08-12'
+  source: catalog MCP census

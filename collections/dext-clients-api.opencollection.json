@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dext Data Health & Insights Clients API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.precision.dext.com/clients"
+          },
+          "docs": "Returns a summarised list of all clients the token has access to."
+        },
+        {
+          "info": {
+            "name": "Get client detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.precision.dext.com/clients/:clientId",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a single client, including data-health metrics, VAT details, and bank reconciliation data."
+        },
+        {
+          "info": {
+            "name": "Get client activity statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.precision.dext.com/clients/:clientId/activity-stats",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns rolling annual, monthly-average, and quarterly-average activity statistics for a single client."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
