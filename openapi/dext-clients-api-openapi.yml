@@ -97,16 +97,6 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  schemas:
-    ClientDetail:
-      type: object
-      description: Detailed client record including data-health metrics, VAT details, and bank reconciliation data. Field names are not enumerated in the public documentation.
-    ClientSummary:
-      type: object
-      description: Summarised client record as returned by the list endpoint. Field names are not enumerated in the public documentation.
-    ActivityStats:
-      type: object
-      description: Rolling annual, monthly-average, and quarterly-average activity statistics. Field names are not enumerated in the public documentation.
   responses:
     RateLimited:
       description: Rate limit exceeded (more than 60 requests per minute).
@@ -117,6 +107,16 @@ components:
         X-RateLimit-Remaining:
           schema:
             type: integer
+  schemas:
+    ClientDetail:
+      type: object
+      description: Detailed client record including data-health metrics, VAT details, and bank reconciliation data. Field names are not enumerated in the public documentation.
+    ActivityStats:
+      type: object
+      description: Rolling annual, monthly-average, and quarterly-average activity statistics. Field names are not enumerated in the public documentation.
+    ClientSummary:
+      type: object
+      description: Summarised client record as returned by the list endpoint. Field names are not enumerated in the public documentation.
   securitySchemes:
     bearerAuth:
       type: http
