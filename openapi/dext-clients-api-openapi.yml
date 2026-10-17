@@ -97,16 +97,6 @@ paths:
         '429':
           $ref: '#/components/responses/RateLimited'
 components:
-  responses:
-    RateLimited:
-      description: Rate limit exceeded (more than 60 requests per minute).
-      headers:
-        X-RateLimit-Limit:
-          schema:
-            type: integer
-        X-RateLimit-Remaining:
-          schema:
-            type: integer
   schemas:
     ClientDetail:
       type: object
@@ -117,6 +107,16 @@ components:
     ClientSummary:
       type: object
       description: Summarised client record as returned by the list endpoint. Field names are not enumerated in the public documentation.
+  responses:
+    RateLimited:
+      description: Rate limit exceeded (more than 60 requests per minute).
+      headers:
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
   securitySchemes:
     bearerAuth:
       type: http
